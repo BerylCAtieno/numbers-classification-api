@@ -74,3 +74,39 @@ func TestIsPerfect(t *testing.T) {
 		})
 	}
 }
+
+func TestIsPrime(t *testing.T) {
+    testCases := []struct {
+        name     string
+        input    int
+        expected bool
+    }{
+        {"Prime number 2", 2, true},
+        {"Prime number 3", 3, true},
+        {"Not a prime number 4", 4, false},
+        {"Prime number 5", 5, true},
+        {"Not a prime number 10", 10, false},
+        {"Prime number 11", 11, true},
+        {"Prime number 13", 13, true},
+        {"Not a prime number 16", 16, false},
+        {"Prime number 17", 17, true},
+        {"Prime number 19", 19, true},
+        {"Prime number 23", 23, true},
+        {"Prime number 29", 29, true},
+        {"Prime number 97", 97, true},
+        {"Not a prime number 100", 100, false},
+        {"Not a prime number 1", 1, false},
+        {"Not a prime number 0", 0, false},
+        {"Not a prime number -5", -5, false},
+    }
+
+    for _, tc := range testCases {
+        t.Run(tc.name, func(t *testing.T) {
+            result := isPrime(tc.input)
+            if result != tc.expected {
+                t.Errorf("isPrime(%d) = %v; want %v", tc.input, result, tc.expected)
+            }
+        })
+    }
+}
+

@@ -2,8 +2,22 @@ package main
 
 import "math"
 
-// Check if a number is prime
-// Check if a number is an Armstrong number
+
+// isPrime checks if a number is prime
+func isPrime(number int) bool {
+    if number < 2 {
+        return false
+    }
+    for i := 2; i*i <= number; i++ {
+        if number%i == 0 {
+            return false
+        }
+    }
+    return true
+}
+
+
+// isArmstrong checks if a number is an Armstrong number
 
 func isArmstrong(number int) bool {
 	original := number
