@@ -1,7 +1,11 @@
 package main
 
-import "math"
-
+import (
+	"encoding/json"
+	"io"
+	"math"
+	"net/http"
+)
 
 // isPrime checks if a number is prime
 func isPrime(number int) bool {
@@ -83,3 +87,55 @@ func sumOfDigits(number int) int {
 }
 
 // Fetch number fun facts
+
+// Structure to hold the response from the Numbers API
+type NumberFactResponse struct {
+	Text string `json:"text"`
+}
+
+// Handler to fetch fun fact about a number
+func getNumberFact(w http.ResponseWriter, r *http.Request) {
+	// Extract the number from the URL
+	number := r.URL.Query().Get("number")
+	if number == "" {
+		http.Error(w, "Please provide a number as query parameter", http.StatusBadRequest)
+		return
+	}
+
+	// Call the Numbers API
+	url := fmt.Sprintf("http://numbersapi.com/%s?json", number)
+	resp, err := http.Get(url)
+	if err != nil {
+		http.Error(w, "Failed to fetch data from Numbers API", http.StatusInternalServerError)
+		return
+	}
+	defer resp.Body.Close()
+
+	// Check if the response is OK
+	if resp.StatusCode != http.StatusOK {
+		http.Error(w, "Failed to get valid response from Numbers API", resp.StatusCode)
+		return
+	}
+
+	// Read the response body
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		http.Error(w, "Failed to read response body", http.StatusInternalServerError)
+		return
+	}
+
+	// Parse the response from Numbers API into our struct
+	var factResponse NumberFactResponse
+	err = json.Unmarshal(body, &factResponse)
+	if err != nil {
+		http.Error(w, "Failed to parse Numbers API response", http.StatusInternalServerError)
+		return
+	}
+
+	// Set the content-type as JSON and send the response back
+	w.Header().Set("Content-Type", "application/json")
+	w.WriteHeader(http.StatusOK)
+
+	// Return the fun fact as a JSON response
+	json.NewEncoder(w).Encode(factResponse)
+}
