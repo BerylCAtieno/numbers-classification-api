@@ -1,34 +1,30 @@
 package main
 
-import (
-	"fmt"
-	"log"
-	"net/http"
-	"os"
-)
 
-func main() {
-	log.Print("starting server...")
-	http.HandleFunc("/", handler)
+// Check if a number is prime
+// Check if a number is an Armstrong number
+// Check if a number is a perfect number
+// Determine odd/even
 
-	// Determine port for HTTP service.
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "3000"
-		log.Printf("defaulting to port %s", port)
-	}
-
-	// Start HTTP server.
-	log.Printf("listening on port %s", port)
-	if err := http.ListenAndServe(":"+port, nil); err != nil {
-		log.Fatal(err)
+func isEvenOrOdd(number int) string {
+	if number%2 == 0 {
+		return "even"
+	} else {
+		return "odd"
 	}
 }
+// Compute the sum of digits
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	name := os.Getenv("NAME")
-	if name == "" {
-		name = "World"
-	}
-	fmt.Fprintf(w, "Hello %s!\n", name)
+func sumOfDigits(number int) int {
+	sum := 0
+    if number < 0 {
+        number = -number // Handle negative numbers
+    }
+    for number > 0 {
+        sum += number % 10 // Extract last digit and add to sum
+        number /= 10       // Remove last digit
+    }
+    return sum
 }
+
+// Fetch number fun facts
