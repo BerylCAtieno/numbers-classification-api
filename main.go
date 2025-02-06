@@ -2,21 +2,17 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"numbers-classifier-api/handlers"
 )
 
 func main() {
-	mux := http.NewServeMux()
+	// Define the endpoint handler
+	http.HandleFunc("/classify", handlers.ClassifyNumberHandler)
 
-	// Define routes
-	mux.HandleFunc("/api/classify-number", handlers.ClassifyNumberHandler)
-
-	server := &http.Server{
-		Addr:    ":8080",
-		Handler: mux,
+	fmt.Println("Server running on 0.0.0.0:8080")
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		log.Fatal(err)
 	}
-
-	fmt.Println("Server running on port 8080...")
-	server.ListenAndServe()
 }

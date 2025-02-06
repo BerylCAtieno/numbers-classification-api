@@ -28,4 +28,19 @@
       # To run something each time the workspace is first created, use the `onStart` hook
     };
   };
+
+idx.previews = {
+  enable = true;
+  previews = {
+    web = {
+      command = [
+        "go"
+        "run"
+        "main.go"
+      ];
+      manager = "web";
+    };
+  };
+};
+
 }
