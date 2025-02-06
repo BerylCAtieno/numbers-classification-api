@@ -3,7 +3,7 @@ package utils
 import "math"
 
 // isPrime checks if a number is prime
-func isPrime(number int) bool {
+func IsPrime(number int) bool {
     if number < 2 {
         return false
     }
@@ -17,7 +17,7 @@ func isPrime(number int) bool {
 
 
 // isArmstrong checks if a number is an Armstrong number
-func isArmstrong(number int) bool {
+func IsArmstrong(number int) bool {
 	original := number
     sum := 0
     digits := 0
@@ -39,7 +39,7 @@ func isArmstrong(number int) bool {
 }
 
 // isPerfect checks if a number is a perfect number
-func isPerfect(number int) bool {
+func IsPerfect(number int) bool {
 	if number < 2 {
         return false
     }
@@ -57,7 +57,7 @@ func isPerfect(number int) bool {
 }
 
 // isEvenOrOdd determines if a number is odd/even
-func isEvenOrOdd(number int) string {
+func IsEvenOrOdd(number int) string {
 	if number%2 == 0 {
 		return "even"
 	} else {
@@ -66,7 +66,7 @@ func isEvenOrOdd(number int) string {
 }
 
 // sumOfDigits computes the sum of digits in a number
-func sumOfDigits(number int) int {
+func SumOfDigits(number int) int {
 	sum := 0
     if number < 0 {
         number = -number // Handle negative numbers

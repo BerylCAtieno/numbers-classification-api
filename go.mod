@@ -1,3 +1,3 @@
-module github.com/GoogleCloudPlatform/golang-samples/run/helloworld
+module numbers-classifier-api
 
-go 1.20
+go 1.22.8

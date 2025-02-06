@@ -6,7 +6,7 @@ import (
 
 
 func TestSumOfDigits(t *testing.T) {
-	result := sumOfDigits(51)
+	result := SumOfDigits(51)
 	expected := 6
 
 	if result != expected {
@@ -16,7 +16,7 @@ func TestSumOfDigits(t *testing.T) {
 }
 
 func TestEvenOrOdd(t *testing.T) {
-	result := isEvenOrOdd(4)
+	result := IsEvenOrOdd(4)
 	expected := "even"
 
 	if result != expected {
@@ -42,7 +42,7 @@ func TestIsArmstrong(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			result := isArmstrong(tc.input)
+			result := IsArmstrong(tc.input)
 			if result != tc.expected {
 				t.Errorf("isArmstrong(%d) = %v; want %v", tc.input, result, tc.expected)
 			}
@@ -70,7 +70,7 @@ func TestIsPerfect(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			result := isPerfect(tc.input)
+			result := IsPerfect(tc.input)
 			if result != tc.expected {
 				t.Errorf("isPerfect(%d) = %v; want %v", tc.input, result, tc.expected)
 			}
@@ -105,7 +105,7 @@ func TestIsPrime(t *testing.T) {
 
     for _, tc := range testCases {
         t.Run(tc.name, func(t *testing.T) {
-            result := isPrime(tc.input)
+            result := IsPrime(tc.input)
             if result != tc.expected {
                 t.Errorf("isPrime(%d) = %v; want %v", tc.input, result, tc.expected)
             }
