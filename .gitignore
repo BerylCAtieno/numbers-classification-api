@@ -27,5 +27,3 @@ go.work.sum
 # temporary
 tmp/
 
-.idx
-.vscode
