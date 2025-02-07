@@ -34,7 +34,7 @@ go run main.go
 
 ## API Endpoints
 ### Classify a Number
-- **URL:** `/classify?number={number}`
+- **URL:** `/api/classify-number?number={number}`
 - **Method:** `GET`
 - **Parameters:**
   - `number` (integer) - The number to classify.
@@ -53,9 +53,9 @@ go run main.go
 ## Testing the API
 You can test the API using `curl`:
 ```sh
-curl "https://numbers-classification-api-3b6h.onrender.com/classify?number=153"
+curl "https://numbers-classification-api-3b6h.onrender.com/api/classify-number?number=153"
 ```
-Or using Postman by sending a `GET` request to `http://localhost:8080/classify?number=153`.
+Or using Postman by sending a `GET` request to `http://localhost:8080/api/classify-number?number=153`.
 
 
 Author
