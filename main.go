@@ -9,7 +9,7 @@ import (
 
 func main() {
 	// Define the endpoint handler
-	http.HandleFunc("/classify", handlers.ClassifyNumberHandler)
+	http.HandleFunc("/api/classify", handlers.ClassifyNumberHandler)
 
 	fmt.Println("Server running on 0.0.0.0:8080")
 	if err := http.ListenAndServe(":8080", nil); err != nil {
