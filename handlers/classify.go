@@ -17,9 +17,15 @@ func ClassifyNumberHandler(w http.ResponseWriter, r *http.Request) {
 	numberStr := r.URL.Query().Get("number")
 	number, err := strconv.Atoi(numberStr)
 	if err != nil {
-		http.Error(w, `{"error": "Invalid number format"}`, http.StatusBadRequest)
+		response := map[string]interface{}{
+			"number": numberStr,
+			"error":  true,
+		}
+		w.WriteHeader(http.StatusBadRequest) // Set 400 status
+		json.NewEncoder(w).Encode(response)
 		return
 	}
+	
 
 	properties := []string{}
 	if utils.IsArmstrong(number) {
